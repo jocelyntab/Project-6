@@ -36,7 +36,7 @@ const addPhraseToDisplay = (arr) => {
 };
 
 // Check if a letter is in the phrase
-// const checkLetter = button = > {};
+const checkLetter = (button) => {};
 
 // Check if the game has been won or lost
 // const checkWin = () => {};
