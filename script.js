@@ -19,10 +19,10 @@ btnStart.addEventListener("click", () => {
 //Return random phrase from an array
 const getRandomPhraseAsArray = (arr) => {
   let randomPhrase = arr[Math.floor(Math.random() * phrases.length)];
-  const phraseAsArray = Array.from(randomPhrase);
+  const phraseAsArray = Array.from(phrase);
   return arr[randomPhrase];
 };
-getRandomPhraseAsArray(addPhrasetoDisplay);
+getRandomPhraseAsArray(phrase);
 
 //Adds the letters of a string to the display
 const addPhraseToDisplay = (arr) => {
