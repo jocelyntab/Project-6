@@ -2,6 +2,7 @@ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const btnStart = document.querySelector(".btn__reset");
 const overlay = document.getElementById("overlay");
+const ulPhrase = document.querySelector("#phrase");
 let phrases = [
   "Learning JavaScript",
   "Front End Developer",
@@ -21,15 +22,15 @@ const randomPhrase = getRandomPhraseAsArray(phrases);
 //Adds the letters of a string to the display
 const addPhraseToDisplay = (arr) => {
   const phraseDiv = document.getElementById("phrase");
-  for (let i = 0; i < phrases.length; i++) {
-    const currentPhrase = arr[i];
+  for (let i = 0; i < arr.length; i++) {
     const li = document.createElement("li");
-    const phraseClassName = trimAndLower(currentPhrase);
-
-    li.innerHTML = currentPhrase;
-    li.classList.add("hide");
-    li.classList.add(phraseClassName);
-    phraseDiv.appendChild(li);
+    li.textContent = arr[i];
+    ulPhrase.appendChild(li);
+    if (arr[i] != " ") {
+      li.className = "letter";
+    } else {
+      li.className = "space";
+    }
   }
 };
 
