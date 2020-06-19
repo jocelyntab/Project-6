@@ -35,23 +35,17 @@ const addPhraseToDisplay = (arr) => {
 };
 
 // Check if a letter is in the phrase
-const checkLetter = (e) => {
-  const letterClicked = e.target.value;
+const checkLetter = (letterClicked) => {
+  const letter = document.querySelector(".letter");
   let matchLetter = null;
 
-  if (randomPhrase.indexOf(letterClicked) > -1) {
-    const targetClassName = trimAndLower(randomPhrase);
-    const targetLi = document.getElementsByClassName(targetClassName)[0];
-    targetLi.classList.add("show");
-    targetLi.classList.remove("hide");
-    matchLetter = true;
+  for (let i = 0; i < letter.length; i++) {
+    if (letterClicked == letter[i].textContent) {
+      letter[i].className = "letter show";
+      matchLetter = letter[i].textContent;
+    }
   }
-
   return matchLetter;
-};
-
-const trimAndLower = (val) => {
-  return val.replace(" ", "").toLowerCase();
 };
 
 // Check if the game has been won or lost
@@ -67,8 +61,9 @@ btnStart.addEventListener("click", () => {
 // Listen for the onscreen keyboard to be clicked
 qwerty.addEventListener("click", (e) => {
   if (e.target.tagName === "button") {
-    const button = e.target;
-    button.className = "chosen";
-    button.disabled = "true";
+    const buttonClick = e.target;
+    buttonClick.className = "chosen";
+    buttonClick.disabled = "true";
+    const letterFound = checkLetter(buttonClick.textContent);
   }
 });
