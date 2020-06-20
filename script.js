@@ -41,7 +41,7 @@ const checkLetter = (letterClicked) => {
 
   for (let i = 0; i < letter.length; i++) {
     if (letterClicked == letter[i].textContent) {
-      letter[i].className = "letter show";
+      letter[i].className.add = "letter show";
       matchLetter = letter[i].textContent;
     }
   }
