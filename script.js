@@ -96,9 +96,6 @@
     return matchedLetter;
   };
 
-  // Check if the game has been won or lost
-  // const checkWin = () => {};
-
   // Listen for the start game button to be pressed
   btnStart.addEventListener("click", () => {
     overlay.style.display = "none";
