@@ -78,15 +78,12 @@
   };
 
   // Reset the Game
-  const resetGame = () => {
-    const newPhrase = getRandomPhraseAsArray(phrases);
-    addPhraseToDisplay(newPhrase);
-    return (missed = 0);
-  };
 
   // Listen for the start game button to be pressed
   btnStart.addEventListener("click", () => {
     overlay.style.display = "none";
+    const newPhrase = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(newPhrase);
   });
 
   // Listen for the onscreen keyboard to be clicked
