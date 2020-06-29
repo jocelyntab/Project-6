@@ -13,10 +13,6 @@
     "It is hot tomorrow",
   ];
   let missed = 0;
-  const overlayStyle =
-    "position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom; 0; z-index:9999; cursor: pointer; align-items: center;";
-  const overlayTextStyle =
-    "position:absolute; top: 0; left: 50%; font-size: 100px; color: #fff; -webkit-transform: translate(-50%, 50%); -moz-transform: translate(-50%, 50%); transform:(-50%, 50%);";
 
   //Return random phrase from an array
   const getRandomPhraseAsArray = (arr) =>
@@ -58,37 +54,22 @@
       }
     }
 
+    //check if game won
     if (allAreLettersChecked(letters)) {
-      const winner = document.createElement("div");
-      winner.style.cssText = overlayStyle;
-      winner.style.backgroundColor = "#4BB543";
-
-      // create overlay text
-      const winnerText = document.createElement("span");
-      winnerText.style.cssText = overlayTextStyle;
-      winnerText.innerHTML = "YOU WIN BITCH";
-      winner.appendChild(winnerText);
-      scoreboard.appendChild(winner);
+      overlay.classList.add("win");
+      overlay.style.display = "block";
+      document.querySelector("#overlay h2").innerHTML = "YOU WIN";
+      btnStart.innerHTML = "Play Again";
     } else {
       if (!matchedLetter) {
         const tries = document.getElementsByClassName("tries");
         if (tries && tries.length > 0) {
           tries[tries.length - 1].remove();
         } else {
-          const gameOver = document.createElement("div");
-          const scoreboard = document.getElementById("scoreboard");
-          gameOver.classList.add("game-over-overlay");
-          // create overlay div
-          gameOver.style.cssText = overlayStyle;
-
-          // create overlay text
-          const gameOverText = document.createElement("span");
-          gameOverText.innerHTML = "GAME OVER BITCH";
-          gameOverText.style.cssText = overlayTextStyle;
-          // add custom game over background colour
-          gameOverText.style.backgroundColor = "#ff0033";
-          gameOver.appendChild(gameOverText);
-          scoreboard.appendChild(gameOver);
+          overlay.classList.add("lose");
+          overlay.style.display = "block";
+          document.querySelector("#overlay h2").innerHTML = "GAME OVER";
+          btnStart.innerHTML = "Play Again";
         }
       }
     }
@@ -96,11 +77,16 @@
     return matchedLetter;
   };
 
+  // Reset the Game
+  const resetGame = () => {
+    const newPhrase = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(newPhrase);
+    return (missed = 0);
+  };
+
   // Listen for the start game button to be pressed
   btnStart.addEventListener("click", () => {
     overlay.style.display = "none";
-    const newPhrase = getRandomPhraseAsArray(phrases);
-    addPhraseToDisplay(newPhrase);
   });
 
   // Listen for the onscreen keyboard to be clicked
