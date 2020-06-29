@@ -85,6 +85,9 @@
 
     for (let i = 0; i < letters.length; i++) {
       letters[i].classList.remove("show");
+      //resetting keyboard back to normal
+      qwerty.classList.remove("chosen");
+      qwerty.disabled = "false";
     }
   };
 
