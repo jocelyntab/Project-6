@@ -61,10 +61,12 @@
       document.querySelector("#overlay h2").innerHTML = "YOU WIN";
       btnStart.innerHTML = "Play Again";
     } else {
+      //removing a heart if a letter does not match
       if (!matchedLetter) {
         const tries = document.getElementsByClassName("tries");
-        if (tries && tries.length > 0) {
+        if (tries && tries.length > 1) {
           tries[tries.length - 1].remove();
+          // ending the game if there are no more hearts
         } else {
           overlay.classList.add("lose");
           overlay.style.display = "block";
@@ -78,10 +80,18 @@
   };
 
   // Reset the Game
+  const resetGame = (letterClicked) => {
+    const letters = Array.from(document.getElementsByClassName("letter"));
+
+    for (let i = 0; i < letters.length; i++) {
+      letters[i].classList.remove("show");
+    }
+  };
 
   // Listen for the start game button to be pressed
   btnStart.addEventListener("click", () => {
     overlay.style.display = "none";
+    resetGame();
     const newPhrase = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(newPhrase);
   });
